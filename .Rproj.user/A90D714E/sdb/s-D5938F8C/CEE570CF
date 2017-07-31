@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"meta data frame\")\n\ndata(sysdata, envir=environment())\n\ntest_that(\"length output list\", {\n  metaf <- meta.dataframe(iris, sysdata$metafeatures_names)\n\n  expect_equal(length(metaf), length(sysdata$metafeatures_names))\n})\n",
+    "created" : 1499244182343.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2036464174",
+    "id" : "CEE570CF",
+    "lastKnownWriteTime" : 1499244429,
+    "last_content_update" : 1499244429041,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/tests/testthat/test-metadataframe.r",
+    "project_path" : "tests/testthat/test-metadataframe.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

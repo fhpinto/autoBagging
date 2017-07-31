@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: autoBagging\nType: Package\nTitle: Learning to Rank Bagging Workflows with Metalearning\nVersion: 0.1.0\nAuthors@R:  c(person(\"Fabio\", \"Pinto\", role = c(\"aut\")),\n              person(\"Vitor\", \"Cerqueira\", email = \"cerqueira.vitormanuel@gmail.com\", role = \"cre\"),\n              person(\"Carlos\", \"Soares\", role = \"ctb\"),\n              person(\"Joao\", \"Mendes-Moreira\", role = \"ctb\"))\nAuthor: Fabio Pinto [aut],\n        Vitor Cerqueira [cre],\n        Carlos Soares [ctb],\n        Joao Mendes-Moreira [ctb]\nMaintainer: Vitor Cerqueira <cerqueira.vitormanuel@gmail.com>\nDescription: A framework for automated machine learning. Concretely, the focus is on the optimisation of bagging workflows. A bagging workflows is composed by three phases: (i) generation: which and how many predictive models to learn; (ii) pruning: after learning a set of models, the worst ones are cut off from the ensemble; and (iii) integration: how the models are combined for predicting a new observation. autoBagging optimises these processes by combining metalearning and a learning to rank approach to learn from metadata. It automatically ranks 63 bagging workflows by exploiting past performance and dataset characterization. A complete description of the method can be found in: Pinto, F., Cerqueira, V., Soares, C., Mendes-Moreira, J. (2017): \"autoBagging: Learning to Rank Bagging Workflows with Metalearning\" arXiv preprint arXiv:1706.09367.\nDepends: R (>= 2.10)\nImports:\n    cluster,\n    xgboost,\n    methods,\n    e1071,\n    rpart,\n    abind,\n    caret,\n    MASS,\n    entropy,\n    lsr,\n    CORElearn,\n    infotheo,\n    minerva,\n    party\nLicense: GPL (>=2)\nEncoding: UTF-8\nLazyData: no\nRoxygenNote: 6.0.1\nSuggests: testthat\n",
+    "created" : 1498812462453.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2777811717",
+    "id" : "8218D728",
+    "lastKnownWriteTime" : 1498927671,
+    "last_content_update" : 1498927671420,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+        "source_window_id" : "w8ntv0el2qy0q"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "source(\"../hyperband-src.r\")\n\n###\n#dir <- \"../../pythonExperiments/pythonDatasets/\"\n\n#lf <- list.files(\"../../pythonExperiments/pythonDatasets/\")\n#lf <- lf[-141]\n\n#form <- class ~.\n\n#res_hb <- list()\n# for (f in seq_along(lf)) {\n#   dataset <- read.csv(paste0(dir, lf[f]), header = FALSE)\n#   colnames(dataset)[length(dataset)] <- \"class\"\n#   dataset <- transform(dataset, class = factor(class))\n#\n#   res_bh[f] <- hyper_pipeline(class ~., dataset)\n# }\n# names(res_bh) <- lf\n\n\n### testing\ndataset <- iris\n#dataset <- read.csv(paste0(dir, lf[1]), header = FALSE)\ncolnames(dataset)[length(dataset)] <- \"class\"\n#dataset <- transform(dataset, class = factor(class))\n\n\nres_bh   <- hyper_pipeline(class ~., dataset)\nres_bh_f <- hyper_pipeline_fixed(class ~., dataset)\n",
+    "created" : 1501074558445.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3778425745",
+    "id" : "EA33040C",
+    "lastKnownWriteTime" : 1501251699,
+    "last_content_update" : 1501251699313,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/HYPERBAND.R",
+    "project_path" : null,
+    "properties" : {
+        "source_window_id" : "wmi36bq76s6lu"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

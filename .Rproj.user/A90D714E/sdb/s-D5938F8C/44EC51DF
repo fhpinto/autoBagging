@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Boosting-based pruning of models\n#'\n#' @param form formula\n#' @param preds predictions in training data\n#' @param data training data\n#' @param cutPoint ratio of the total number of models to cut off\nbb <- function (form, preds, data, cutPoint) {\n  class <- get_target(form)\n  prunedN <- ceiling(ncol(preds) - (ncol(preds) * cutPoint))\n  weights <- rep(1/nrow(data), nrow(data))\n  ordem <- NULL\n\n  for (l in 1:prunedN) {\n    errors <- apply(preds, 2, function(x) {sum(((!(x == data[,class])) * 1) * weights)})\n\n    # hammer time! works fine, though\n    errors[ordem] <- max(errors) * 2\n\n    ordem[l] <- which.min(errors)\n\n    errorU <- min(errors)\n    predU <- preds[,ordem[l]] == data[,class]\n\n    if (errorU > 0.5) {\n\n      weights <- rep(1/nrow(data), nrow(data))\n\n    } else {\n\n      for (w in 1:length(weights)) {\n        weights[w] <- ifelse(predU[w], weights[w] / (2*errorU) , weights[w] / (2 * (1-errorU)) )\n      }\n    }\n    weights <- sapply(weights, function(x) {\n\t  ifelse(x > 10.000e+300, 10.000e+300, x)\n    })\n  }\n  return(ordem)\n}\n\n\n#' Margin Distance Minimization\n#'\n#' @inheritParams bb\nmdsq <- function (form, preds, data, cutPoint) {\n  class <- get_target(form)\n\n  prunedN <- ceiling(ncol(preds) - (ncol(preds) * cutPoint))\n\n  ordem <- as.vector(NULL)\n\n  pred <- ifelse(preds == data[,class], 1, -1)\n  ens <- rep(0, length(data[,class]))\n  colnames(pred) <- 1:ncol(pred)\n  o <- rep(0.075, length(data[,class]))\n\n  for (l in 1:prunedN) {\n    dist <- apply(as.matrix(pred), 2, function (x) {sqrt( sum( ( ((x+as.vector(ens))/l) - o )^2 ) )})\n    ens <- as.matrix(ens) + as.matrix(pred[,c(names(which.min(dist)))])\n    pred <- as.matrix(pred[,setdiff(colnames(pred),names(which.min(dist)))])\n    ordem[l] <- as.integer(names(which.min(dist)))\n  }\n  return(ordem)\n}\n",
+    "created" : 1500731958544.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1343255806",
+    "id" : "44EC51DF",
+    "lastKnownWriteTime" : 1500894024,
+    "last_content_update" : 1500894024781,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/R/pruning.r",
+    "project_path" : "R/pruning.r",
+    "properties" : {
+        "source_window_id" : ""
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' majority voting\n#'\n#' @param x predictions produced by a set of models\n#'\n#' @export\nmajority_voting <- function(x) {\n  unique.x <- unique(x)\n  unique.x[which.max(tabulate(match(x, unique.x)))]\n}\n\nnormalize01 <- function(x, max_value, min_value) {\n\t(x - min_value) / (max_value - min_value)\n}\n\n#' get target variable\n#'\n#' get the target variable from a formula\n#'\n#' @param form formula\n#'\n#' @export\nget_target <- function(form) {\n\tunlist(strsplit(deparse(form), split = \" \", fixed = TRUE), use.names = FALSE)[1]\n}\n\nsplit_by <- function(expr, split, ...) {\n  expr <- strsplit(expr, split = split, fixed = FALSE, ...)\n\n  unlist(expr, use.names = FALSE)\n}\n\ncleanRecWF <- function(o) {\n  exprs <- \"nTrees.|pruningMethods.|pruningCutPoint.|dynamicMethods.\"\n\n  o$meta.pred <- NULL\n  o <- as.list(o)\n  o_selected <- o[o == 1]\n  o_methods <- names(o_selected)\n\n  methods_vals <- lapply(o_methods, function(j) split_by(j, exprs)[2])\n  names(methods_vals) <- c(\"nTrees\", \"pruningMethods\", \"pruningCutPoint\",\"dynamicMethods\")\n  methods_vals$nTrees <- as.numeric(methods_vals$nTrees)\n\n  if (methods_vals$pruningMethods != \"none\")\n    methods_vals$pruningCutPoint <- as.numeric(methods_vals$pruningCutPoint)\n\n  methods_vals\n}\n\ncatWF <- function(wf) {\n  cat(\"Bagging ensemble of\",wf$nTrees,\"decision trees.\\n\\n\")\n  if (!wf$pruningMethods %in% \"none\") {\n    cat(\"With a pruning cut of\",\n        wf$pruningCutPoint,\n        \"with method\",wf$pruningMethods,\"\\n\\n\")\n  } else {\n    cat(\"Without tree pruning.\")\n  }\n\n  if (!wf$dynamicMethods %in% \"none\") {\n    cat(\"Predictions should be produced dynamically with method\",\n        wf$dynamicMethods,\"\\n\\n\")\n  } else {\n    cat(\"Predictions should be produced according to majority voting.\")\n  }\n}\n\nrange01 <- function(x) {\n  (x - min(x)) / (max(x) - min(x))\n}\n\nLog2 <- function(values) sapply(values, log0)\n\nlog0 <- function(x) {\n  if (x == 0.0 || is.na(x))\n    0.0\n  else\n    log2(x)\n}\n\ngaussian.dist <- function(x,y,w) {\n  exp(-sum((x-y)^2)/(2*w^2))\n}\n\ncreate_formula <- function(class, vars) {\n  expr <- paste0(class, \" ~ \", paste(vars, collapse=\" + \"))\n  form <- eval(parse(text = expr))\n\n  form\n}\n\nf.to.one.zero <- function(dat) {\n  cbind(dat[,-c(which(sapply(dat, is.factor)))], model.matrix(eval(parse(text=paste(\"~\",\" 0 + \",paste(names(which(sapply(dat, is.factor))),collapse=\" + \"),sep=\"\"))), model.frame(eval(parse(text=paste(\"~\",\" 0 + \",paste(names(which(sapply(dat, is.factor))),collapse=\" + \"),sep=\"\"))),dat,na.action=function(x) x )) )\n}\n\n",
+    "created" : 1498812073926.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3762789538",
+    "id" : "92F38EA7",
+    "lastKnownWriteTime" : 1498331889,
+    "last_content_update" : 1498331889,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/R/utils.r",
+    "project_path" : "R/utils.r",
+    "properties" : {
+        "source_window_id" : ""
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,13 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{autoBagging}: Learning to Rank Bagging Workflows with Metalearning",
+         author = c(person("Fábio", "Pinto"),
+                    person("Vitor", "Cerqueira"),
+                    person("Carlos", "Soares"),
+                    person("João", "Mendes-Moreira"),
+                    person("R Core Team")),
+         year = 2017,
+         note = note,
+         url = "https://arxiv.org/abs/1706.09367")

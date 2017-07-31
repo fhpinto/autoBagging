@@ -1,0 +1,35 @@
+Package: autoBagging
+Type: Package
+Title: Learning to Rank Bagging Workflows with Metalearning
+Version: 0.1.0
+Authors@R:  c(person("Fabio", "Pinto", role = c("aut")),
+              person("Vitor", "Cerqueira", email = "cerqueira.vitormanuel@gmail.com", role = "cre"),
+              person("Carlos", "Soares", role = "ctb"),
+              person("Joao", "Mendes-Moreira", role = "ctb"))
+Author: Fabio Pinto [aut],
+        Vitor Cerqueira [cre],
+        Carlos Soares [ctb],
+        Joao Mendes-Moreira [ctb]
+Maintainer: Vitor Cerqueira <cerqueira.vitormanuel@gmail.com>
+Description: A framework for automated machine learning. Concretely, the focus is on the optimisation of bagging workflows. A bagging workflows is composed by three phases: (i) generation: which and how many predictive models to learn; (ii) pruning: after learning a set of models, the worst ones are cut off from the ensemble; and (iii) integration: how the models are combined for predicting a new observation. autoBagging optimises these processes by combining metalearning and a learning to rank approach to learn from metadata. It automatically ranks 63 bagging workflows by exploiting past performance and dataset characterization. A complete description of the method can be found in: Pinto, F., Cerqueira, V., Soares, C., Mendes-Moreira, J. (2017): "autoBagging: Learning to Rank Bagging Workflows with Metalearning" arXiv preprint arXiv:1706.09367.
+Depends: R (>= 2.10)
+Imports:
+    cluster,
+    xgboost,
+    methods,
+    e1071,
+    rpart,
+    abind,
+    caret,
+    MASS,
+    entropy,
+    lsr,
+    CORElearn,
+    infotheo,
+    minerva,
+    party
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: no
+RoxygenNote: 6.0.1
+Suggests: testthat

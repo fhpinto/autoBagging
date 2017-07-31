@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' bagging method\n#'\n#' @param form formula\n#'\n#' @param data training data\n#'\n#' @param ntrees ntrees\n#'\n#' @param pruning model pruning method. A character vector. Currently, the\n#' following methods are supported:\n#' \\describe{\n#'    \\item{mdsq}{Margin-distance minimisation}\n#'    \\item{bb}{boosting based pruning}\n#'    \\item{none}{no pruning}\n#' }\n#'\n#' @param dselection dynamic selection of the available models. Currently, the\n#' following methods are supported:\n#' \\describe{\n#'    \\item{ola}{Overall Local Accuracy}\n#'    \\item{knora-e}{K-nearest-oracles-eliminate}\n#'    \\item{none}{no dynamic selection. Majority voting is used.}\n#' }\n#'\n#' @param pruning_cp The pruning cutpoint for the \\code{pruning} method\n#' picked.\n#'\n#' @seealso \\code{\\link{baggedtrees}} for the implementation of the bagging model.\n#'\n#' @examples\n#' # splitting an example dataset into train/test:\n#' train <- iris[1:(.7*nrow(iris)), ]\n#' test <- iris[-c(1:(.7*nrow(iris))), ]\n#' form <- Species ~.\n#' # a user-defined bagging workflow\n#' m <- bagging(form, iris, ntrees = 5, pruning = \"bb\", pruning_cp = .5, dselection = \"ola\")\n#' preds <- predict(m, test)\n#' # a standard bagging workflow with 5 trees (5 trees for examplification purposes):\n#' m2 <- bagging(form, iris, ntrees = 5, pruning = \"none\", dselection = \"none\")\n#' preds2 <- predict(m2, test)\n#'\n#' @export\nbagging <- function(form, data, ntrees, pruning, dselection, pruning_cp) {\n  if (!pruning %in% c(\"mdsq\", \"bb\", \"none\"))\n    stop(\"Unknown pruning method.\n         Type '?bagging' in your console\n         to check the available methods\", call. = FALSE)\n\n  if (pruning != \"none\" & missing(pruning_cp))\n    stop(\"Choose a pruning cutpoint by setting\n         the 'pruning_cp' parameter.\", call. = FALSE)\n\n  if (!dselection %in% c(\"ola\", \"knora-e\", \"none\"))\n    stop(\"Unknown dynamic selection method.\n         Type '?bagging' in your console\n         to check the available methods\", call. = FALSE)\n\n\n  cat(\"Training an ensemble of\", ntrees, \"decision trees\\n\")\n  BT <- baggedtrees(form, data, ntrees)\n\n  # pruning dos modelos\n  if (pruning != \"none\") {\n    cat(\"Pruning the ensemble using method\", pruning, \"\\n\")\n    Y_hat.tr <- sapply(BT, predict, data)\n    Y_hat.tr1<<-Y_hat.tr\n    data1<<-data\n    IDs <- switch(pruning,\n                  \"bb\" = {\n                    bb(form, Y_hat.tr, data, pruning_cp)\n                  },\n                  \"mdsq\" = {\n                    mdsq(form, Y_hat.tr, data, pruning_cp)\n                  })\n    BT <- BT[IDs]\n    cat(\"Returning a pruned ensemble with\", length(BT), \"models\\n\")\n  } else {\n    cat(\"Returning the ensemble without pruning\\n\")\n  }\n\n  abmodel(BT, form, data, dselection)\n}\n\n#' bagged trees models\n#'\n#' The standard resampling with replacement (bootstrap) is used\n#' as sampling strategy.\n#'\n#' @param form formula\n#'\n#' @param data training data\n#'\n#' @param ntree no of trees\n#'\n#' @examples\n#' ensemble <- baggedtrees(Species ~., iris, ntree = 50)\n#'\n#' @export\nbaggedtrees <- function(form, data, ntree = 100) {\n  n <- nrow(data)\n\n  BT <- lapply(seq_len(ntree), function(o) {\n    bs <- sample(n, n, replace = TRUE)\n    do.call(party::ctree, list(form, data[bs, ]))\n  })\n  names(BT) <- paste0(\"M\", seq_along(BT))\n\n  BT\n}\n",
+    "created" : 1498742758137.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2492223654",
+    "id" : "853942BA",
+    "lastKnownWriteTime" : 1500732155,
+    "last_content_update" : 1500732155779,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/R/bagging.r",
+    "project_path" : "R/bagging.r",
+    "properties" : {
+        "source_window_id" : "w8ntv0el2qy0q"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

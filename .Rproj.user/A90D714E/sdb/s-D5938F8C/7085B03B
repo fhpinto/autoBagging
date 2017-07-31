@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' autoBagging: A package for learning to rank\n#' bagging workflows with metalearning\n#'\n#' Machine Learning (ML) has been successfully applied to a\n#' wide range of domains and applications. One of the techniques\n#' behind most of these successful applications is Ensemble Learning (EL),\n#' the field of ML that gave birth to methods such as Random Forests\n#' or Boosting. The complexity of applying these techniques together\n#' with the market scarcity on ML experts, has created the need for\n#' systems that enable a fast and easy drop-in replacement for ML libraries.\n#' Automated machine learning (autoML) is the field of ML that attempts\n#' to answers these needs. Typically, these systems rely on optimization\n#' techniques such as bayesian optimization to lead the search for the\n#' best model. Our approach differs from these systems by making use of\n#' the most recent advances on metalearning and a learning to rank\n#' approach to learn from metadata. We propose autoBagging, an autoML\n#' system that automatically ranks 63 bagging workflows by exploiting\n#' past performance and dataset characterization. Results on 140\n#' classification datasets from the OpenML platform show that autoBagging\n#' can yield better performance than the Average Rank method and achieve\n#' results that are not statistically different from an ideal model that\n#' systematically selects the best workflow for each dataset.\n#'\n#' The underlying model leverages the performance of the workflows\n#' in historical data. It ranks and recommends workflows for a given\n#' classification task. A bagging workflow is comprised by the following steps:\n#' \\describe{\n#'   \\item{generation}{the number of trees to grow}\n#'   \\item{pruning}{the pruning of low performing trees in the ensemble}\n#'   \\item{pruning cut-point}{a parameter of the previous step}\n#'   \\item{dynamic selection}{the dynamic selection method used\n#'   to aggregate predictions. If none is recommended, majority voting\n#'   is used.}\n#' }\n#'\n#' @docType package\n#' @name autoBagging\nNULL\n",
+    "created" : 1498926884119.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1467306559",
+    "id" : "7085B03B",
+    "lastKnownWriteTime" : 1498926931,
+    "last_content_update" : 1498926931657,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/R/autoBagging.r",
+    "project_path" : "R/autoBagging.r",
+    "properties" : {
+        "source_window_id" : "w8ntv0el2qy0q"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

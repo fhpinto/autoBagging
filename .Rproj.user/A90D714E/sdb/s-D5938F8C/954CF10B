@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' sysdata\n#'\n#' Meta data needed to run the \\strong{autoBagging} method.\n#'\n#' @format a list comprising the following information\n#' \\describe{\n#'   \\item{avgRankMatrix}{the average rank data regarding each bagging\n#'   workflow}\n#'   \\item{workflows}{metadata on the bagging workflows}\n#'   \\item{MaxMinMetafeatures}{range data on each metafeature}\n#'   \\item{metafeatures}{names and values of each metafeatures used\n#'   to describe the datasets}\n#'   \\item{metamodel}{the xgboost ranking metamodel}\n#' }\n\"sysdata\"\n",
+    "created" : 1498725706522.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "796865553",
+    "id" : "954CF10B",
+    "lastKnownWriteTime" : 1498725894,
+    "last_content_update" : 1498725894127,
+    "path" : "~/Dropbox/AutoFuckingBagging/package/autoBagging/R/data.r",
+    "project_path" : "R/data.r",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
